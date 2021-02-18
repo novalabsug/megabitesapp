@@ -1,0 +1,85 @@
+<%- include('partials/header'); -%>
+    <main id="signup">
+        <div class="signup-hdr">
+            <h3>account signup</h3>
+            <a href="/"><i class="lni lni-home"></i></a>
+        </div>
+        <form method="post" id="signupForm">
+            <div class="input">
+                <label for="name">Full Names</label>
+                <i class="lni lni-user"></i>
+                <input type="text" name="name" placeholder="eg. John Doe">
+                <div class="name error"></div>
+            </div>
+            <div class="input email">
+                <label for="email">Email</label>
+                <i class="lni lni-envelope"></i>
+                <input type="text" name="email" placeholder="eg. example@email.com">
+                <div class="email error"></div>
+            </div>
+            <div class="input">
+                <label for="password">Password</label>
+                <i class="lni lni-lock-alt"></i>
+                <input type="text" name="password">
+                <div class="password error"></div>
+            </div>
+            <div class="form-txt">
+                <p>Already have an account <a href="/login">Sign In</a></p>
+            </div>
+            <button class="btn" type="submit">Sign Up</button>
+        </form>
+    </main>
+
+    <script>
+        const form = document.querySelector('form');
+
+        const emailError = document.querySelector('.email.error');
+        const nameError = document.querySelector('.name.error');
+        const passwordError = document.querySelector('.password.error');
+
+        form.addEventListener('submit', async(e) => {
+            e.preventDefault();
+
+            //Reset errors
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            nameError.textContent = '';
+
+            //Get the values
+            const name = form.name.value;
+            const email = form.email.value;
+            const password = form.password.value;
+
+
+            try {
+                const res = await fetch('/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        password
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await res.json();
+
+                console.log(data.errors);
+
+                if (data.errors) {
+                    emailError.textContent = data.errors.email;
+                    passwordError.textContent = data.errors.password;
+                    nameError.textContent = data.errors.name;
+                }
+
+                if (data.user) {
+                    location.assign('/login');
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        });
+    </script>
+    <%- include('partials/footerNav'); -%>

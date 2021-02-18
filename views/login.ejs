@@ -1,0 +1,80 @@
+<%- include('partials/header'); -%>
+    <main id="signin">
+        <div class="signin-hdr">
+            <h3>account login</h3>
+            <a href="/"><i class="lni lni-home"></i></a>
+        </div>
+        <form action="post" id="signinForm">
+            <div class="input email">
+                <label for="email">Email</label>
+                <i class="lni lni-envelope"></i>
+                <input type="text" name="email" placeholder="example@email.com">
+                <div class="email error"></div>
+            </div>
+            <div class="input">
+                <label for="password">Password</label>
+                <i class="lni lni-lock-alt"></i>
+                <input type="text" name="password">
+                <div class="password error"></div>
+            </div>
+            <div class="form-txt">
+                <p>Dont have an account <a href="/signup">Sign Up</a></p>
+            </div>
+            <button class="btn" type="submit">Sign In</button>
+        </form>
+    </main>
+
+    <script>
+        const form = document.querySelector('form');
+
+        const emailError = document.querySelector('.email.error');
+
+        const passwordError = document.querySelector('.password.error');
+
+        let onlineUsers = [];
+
+        console.log(onlineUsers);
+
+        form.addEventListener('submit', async(e) => {
+            e.preventDefault();
+
+            //Reset errors
+            emailError.textContent = '';
+            passwordError.textContent = '';
+
+            //Get the values
+            const email = form.email.value;
+            const password = form.password.value;
+
+
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email,
+                        password
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await res.json();
+                console.log(data);
+
+                console.log(data.errors);
+
+                if (data.errors) {
+                    emailError.textContent = data.errors.email;
+                    passwordError.textContent = data.errors.password;
+                }
+
+                if (data.user) {
+                    location.assign('/');
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        });
+    </script>
+    <%- include('partials/footerNav'); -%>

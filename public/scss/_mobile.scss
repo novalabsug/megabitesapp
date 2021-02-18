@@ -1,0 +1,306 @@
+// @mixin mediaSm 
+@media screen and (max-width: 500px) {
+    * {
+        align-items: center;
+        align-content: center;
+        text-align: center;
+    }
+    .hide-on-large {
+        display: block;
+    }
+    .hide-on-small {
+        display: none;
+    }
+    .d2 {
+        display: block;
+    }
+    .menu-nav {
+        padding: 2rem 1rem !important;
+    }
+    main {
+        padding: 5rem 0;
+        .home-wrapper {
+            padding: 3rem !important;
+            h4 {
+                text-align: center !important;
+            }
+            .logo {
+                display: flex !important;
+                flex-direction: column wrap !important;
+                align-self: center;
+                align-items: center;
+                img {
+                    height: 100px;
+                    width: 150px;
+                    margin: 0 auto !important;
+                }
+            }
+            .home-r2 {
+                display: block;
+                .home-header {
+                    .header-text {
+                        h2 {
+                            text-align: center !important;
+                        }
+                        p {
+                            text-align: center !important;
+                        }
+                    }
+                }
+                .img {
+                    img {
+                        display: none;
+                    }
+                }
+            }
+            .home-gallery {
+                .gallery {
+                    width: 100%;
+                    columns: 1 !important;
+                    grid-auto-rows: auto;
+                    column-gap: 0;
+                    .box {
+                        img {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        &#menu,
+        &#about {
+            .menu-wrapper,
+            .about-wrapper {
+                padding: 7rem 3rem;
+                background: #000000;
+            }
+        }
+    }
+    .home-testimony {
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+        .testimony {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 4rem;
+        }
+    }
+    footer#footer {
+        .footer-body {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-bottom: 2px solid rgb(223, 223, 223);
+            div {
+                padding: 1rem 0;
+            }
+        }
+    }
+    main#signup,
+    main#signin,
+    main#reservation {
+        padding: 0;
+        form {
+            padding: 5rem 2rem;
+            .input-form {
+                text-align: left;
+                label {
+                    text-align: left !important;
+                }
+            }
+            button {
+                outline: none;
+                margin: 2rem 0;
+                width: 100%;
+                left: 0;
+                padding: 0.5rem 2rem;
+                border-radius: 0.3rem;
+                cursor: pointer;
+                color: #fff;
+                background-color: $secondary-color;
+                border: 2px solid $secondary-color;
+            }
+        }
+    }
+}
+
+// @mixin mediaMd 
+@media screen and (max-width: 768px) {
+    * {
+        align-items: center;
+        align-content: center;
+        text-align: center;
+    }
+    .hide-on-large {
+        display: block;
+    }
+    .hide-on-small {
+        display: none;
+    }
+    .d2 {
+        display: block;
+    }
+    .menu-nav {
+        padding: 2rem 1rem !important;
+    }
+    main {
+        padding: 5rem 0;
+        .home-wrapper {
+            padding: 3rem !important;
+            h4 {
+                text-align: center !important;
+            }
+            .logo {
+                display: flex !important;
+                flex-direction: column wrap !important;
+                align-self: center;
+                align-items: center;
+                img {
+                    height: 100px;
+                    width: 150px;
+                    margin: 0 auto !important;
+                }
+            }
+            .home-r2 {
+                display: block;
+                .home-header {
+                    .header-text {
+                        h2 {
+                            text-align: center !important;
+                        }
+                        p {
+                            text-align: center !important;
+                        }
+                    }
+                }
+                .img {
+                    img {
+                        display: none;
+                    }
+                }
+            }
+            .home-gallery {
+                .gallery {
+                    width: 100%;
+                    columns: 1 !important;
+                    grid-auto-rows: auto;
+                    column-gap: 0;
+                    .box {
+                        img {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        &#menu,
+        &#about {
+            .menu-wrapper,
+            .about-wrapper {
+                z-index: -1;
+                padding: 7rem 0 !important;
+                background: #fff;
+                -webkit-clip-path: none;
+                clip-path: none;
+                .home-r2 {
+                    padding: 5rem 0 3rem 0;
+                    display: block;
+                    .special-menu {
+                        background-image: url(/images/phone.png);
+                        background-position: center;
+                        background-size: cover;
+                        margin: 1rem auto !important;
+                        padding: 5rem 3rem !important;
+                        h2 {
+                            color: $secondary-color;
+                            font-size: 2rem;
+                        }
+                        .offers {
+                            .offer {
+                                p {
+                                    color: #000;
+                                }
+                                h3 {
+                                    font-size: 1.5rem;
+                                    color: $secondary-color;
+                                }
+                                h4 {
+                                    color: #000;
+                                }
+                            }
+                        }
+                    }
+                    .img {
+                        display: none;
+                    }
+                }
+                .breakfast-menu,
+                .lunch-menu {
+                    padding: 5rem 2rem 3rem 2rem;
+                    border-bottom: 2px solid rgb(219, 219, 219);
+                    h2 {
+                        color: $secondary-color;
+                    }
+                    .menus {
+                        padding: 2rem 0;
+                        display: grid;
+                        grid-template-columns: repeat(1, 1fr);
+                        .menu {
+                            padding: 2rem 0;
+                            h3 {
+                                color: $secondary-color;
+                            }
+                            p {
+                                color: #000;
+                            }
+                            h4 {
+                                color: $secondary-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .home-testimony {
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+        .testimony {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 4rem;
+        }
+    }
+    footer#footer {
+        .footer-body {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-bottom: 2px solid rgb(223, 223, 223);
+            div {
+                padding: 1rem 0;
+            }
+        }
+    }
+    main#signup,
+    main#signin,
+    main#reservation {
+        padding: 5rem 0;
+    }
+}
+
+// @mixin mediaLg 
+@media screen and (min-width: 769px) and (max-width: 1170px) {
+    .hide-on-large {
+        display: none;
+    }
+}
+
+// @mixin mediaXL 
+@media screen and (min-width: 1171px) {
+    .hide-on-large {
+        display: none;
+    }
+}

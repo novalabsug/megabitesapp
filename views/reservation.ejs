@@ -1,0 +1,121 @@
+<%- include('partials/header'); -%>
+    <main id="reservation">
+        <div class="reservation-hdr">
+            <h3>make reservation</h3>
+            <a href="/"><i class="lni lni-home"></i></a>
+        </div>
+        <form method="post" id="reservation">
+            <% if (user){ %>
+                <h3>Make a reservation</h3>
+                <div class="input hidden" hidden>
+                    <label for="name">Full Names</label>
+                    <i class="lni lni-user"></i>
+                    <input type="text" name="name" placeholder="John Doe" value="<%= user.name %>">
+                    <div class="name error"></div>
+                </div>
+                <div class="input hidden" hidden>
+                    <label for="email">Email</label>
+                    <i class="lni lni-envelope"></i>
+                    <input type="text" name="email" placeholder="example@email.com" value="<%= user.email %>">
+                    <div class="email error"></div>
+                </div>
+                <div class="input hidden" hidden>
+                    <label for="mobile">Phone Number</label>
+                    <i class="lni lni-phone"></i>
+                    <input type="text" name="mobile" placeholder="7xx xxx xxx" value="<%= user.mobile %>">
+                    <div class="mobile error"></div>
+                </div>
+                <% } %>
+                    <div class="input">
+                        <label for="date">Reservation Date</label>
+                        <i class="lni lni-calendar"></i>
+                        <input type="date" name="date" placeholder="2020-01-01" pattern="\d{4}-\d{2}-\d{2}">
+                        <div class="date error"></div>
+                    </div>
+                    <div class="input">
+                        <label for="time">Reservation Time</label>
+                        <i class="lni lni-calendar"></i>
+                        <input type="text" name="time" placeholder="12 AM">
+                        <div class="time error"></div>
+                    </div>
+                    <div class="input">
+                        <label for="seats">Number of seats</label>
+                        <i class="lni lni-users"></i>
+                        <input type="text" name="seats" placeholder="1 Seat">
+                        <div class="seats error"></div>
+                    </div>
+                    <button type="submit" class="btn">Submit</button>
+        </form>
+
+    </main>
+
+
+    <script>
+        const form = document.querySelector('form');
+
+        const emailError = document.querySelector('.email.error');
+        const nameError = document.querySelector('.name.error');
+        const mobileError = document.querySelector('.mobile.error');
+        const dateError = document.querySelector('.date.error');
+        const timeError = document.querySelector('.time.error');
+        const seatsError = document.querySelector('.seats.error');
+
+        form.addEventListener('submit', async(e) => {
+            e.preventDefault();
+
+            //Reset errors
+            emailError.textContent = '';
+            nameError.textContent = '';
+            mobileError.textContent = '';
+            dateError.textContent = '';
+            timeError.textContent = '';
+            seatsError.textContent = '';
+
+            //Get the values
+            const name = form.name.value;
+            const mobile = form.mobile.value;
+            const email = form.email.value;
+            const date = form.date.value;
+            const time = form.time.value;
+            const seats = form.seats.value;
+
+
+            try {
+                const res = await fetch('/reservation', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name,
+                        mobile,
+                        email,
+                        date,
+                        time,
+                        seats
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await res.json();
+
+                console.log(data.errors);
+
+                if (data.errors) {
+                    emailError.textContent = data.errors.email;
+                    dateError.textContent = data.errors.date;
+                    nameError.textContent = data.errors.name;
+                    mobileError.textContent = data.errors.mobile;
+                    timeError.textContent = data.errors.time;
+                    seatsError.textContent = data.errors.seats;
+                }
+
+                if (data.reservation) {
+                    location.assign('/');
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        });
+    </script>
+
+    <%- include('partials/footerNav'); -%>
