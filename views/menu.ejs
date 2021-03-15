@@ -10,13 +10,79 @@
                 <div class="hide-on-small">
                     <%- include('partials/headerNav'); -%>
                 </div>
-
             </div>
         </div>
         <div class="menu-wrapper">
-
+            <div id="notification">
+                <div class="notification-hdr">
+                    <i class="lni lni-alarm"></i>
+                </div>
+                <div class="notifications"></div>
+            </div>
+            <div class="menu-hdr">
+                <h2>menu</h2>
+                <div class="menu-hdr-nav">
+                    <h3 class="modern-menu active" id="menus-btn">|Modern</h3>
+                    <h3 class="classic-menu" id="menus-btn">|Classic</h3>
+                    <i class="lni lni-more-alt"></i>
+                </div>
+                <div class="menu-side-nav hide-on-small">
+                    <h3>Build your own custom order</h3>
+                    <a href="/custome_menu" class="btn">Build your order</a>
+                </div>
+            </div>
+            <div class="menu-modern" id="menu-type">
+                <div class="menu-item-btns">
+                    <ul>
+                        <li id="menu-item-btn" class="burger-item-btn">
+                            <img src="/images/menus/icons/sandwich.png" alt="" srcset="">
+                            <a>Burgers</a>
+                        </li>
+                        <li id="menu-item-btn" class="pizza-item-btn">
+                            <img src="/images/menus/icons/pizza.png" alt="" srcset="">
+                            <a>Pizza</a>
+                        </li>
+                        <li id="menu-item-btn" class="rolex-item-btn">
+                            <img src="/images/menus/icons/burrito.png" alt="" srcset="">
+                            <a>Rolex</a>
+                        </li>
+                        <li id="menu-item-btn" class="pastries-item-btn">
+                            <img src="/images/menus/icons/cupcake.png" alt="" srcset="">
+                            <a>Pastries</a>
+                        </li>
+                        <li id="menu-item-btn" class="drinks-item-btn">
+                            <img src="/images/menus/icons/drinks.png" alt="" srcset="">
+                            <a>Drinks</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-items">
+                    <div class="burger-menu" id="menu-item">
+                        <div class="burgers" id="menu">
+                            <div class="gr gr-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pizza-menu" id="menu-item">
+                        <div class="pizzas" id="menu">
+                            <div class="gr gr-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rolex-menu" id="menu-item">
+                        <h3>Rolex</h3>
+                    </div>
+                    <div class="pastries-menu" id="menu-item">
+                        <h3>Pastries</h3>
+                    </div>
+                    <div class="drinks-menu" id="menu-item">
+                        <h3>Drinks</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-classic" id="menu-type"></div>
         </div>
         <%- include('partials/footer'); -%>
     </main>
-
+    <script src="/js/menu.js"></script>
     <%- include('partials/footerNav'); -%>

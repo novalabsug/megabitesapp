@@ -2,6 +2,11 @@ const User = require('../models/User');
 const uuid = require('uuid');
 const jwt = require('jsonwebtoken');
 const Reservation = require('../models/Reservation');
+const Menus = require('../models/Menus');
+const Cart = require('../models/Cart');
+const { Mongoose } = require('mongoose');
+const Contact = require('../models/Contact');
+const Comment = require('../models/Comments');
 
 const maxAge = 2 * 24 * 60 * 60;
 
@@ -14,7 +19,7 @@ const createToken = (id) => {
 const handleErrors = (err) => {
     console.log(err.message, err.code);
 
-    let errors = { name: '', username: '', mobile: '', email: '', password: '', date: '', time: '', seats: '' };
+    let errors = { name: '', username: '', mobile: '', email: '', password: '', date: '', time: '', seats: '', menu: '', user: '', status: '', menuName: '', menuPrice: '', menuDescription: '', menuType: '', contactName: '', contactEmail: '', subject: '', message: '', comment: '', commentName: '' };
 
     //incorrect email
     if (err.message === 'Incorrect email') {
@@ -46,6 +51,34 @@ const handleErrors = (err) => {
         });
     }
 
+    // validating cart errors
+    if (err.message.includes('cart validation failed')) {
+        Object.values(err.errors).forEach(({ properties }) => {
+            errors[properties.path] = properties.message;
+        });
+    }
+
+    // validating menu errors
+    if (err.message.includes('menu validation failed')) {
+        Object.values(err.errors).forEach(({ properties }) => {
+            errors[properties.path] = properties.message;
+        });
+    }
+
+    // validating contact errors
+    if (err.message.includes('contact validation failed')) {
+        Object.values(err.errors).forEach(({ properties }) => {
+            errors[properties.path] = properties.message;
+        });
+    }
+
+    // validating comments errors
+    if (err.message.includes('comment validation failed')) {
+        Object.values(err.errors).forEach(({ properties }) => {
+            errors[properties.path] = properties.message;
+        });
+    }
+
     return errors;
 }
 
@@ -60,6 +93,96 @@ module.exports.login_get = (req, res) => {
 module.exports.reservation_get = (req, res) => {
     res.redirect(301, '/reservation');
     res.render('reservation');
+}
+
+module.exports.menus_post = async(req, res) => {
+    const { menuName, menuPrice, menuDescription, menuType } = req.body;
+    try {
+        if (menuName) {
+            const menuPost = await Menus.create({ menuId: uuid.v4(), menuName, menuPrice, menuDescription, menuType });
+            res.status(200).json({ menuPost });
+        } else {
+            const menuLists = await Menus.getMenus();
+            console.log('fetched');
+            console.log(menuLists);
+            res.status(200).json({ menuLists });
+        }
+
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+}
+
+module.exports.contact_post = async(req, res) => {
+    const { name, email, subject, message } = req.body;
+    try {
+        const contact = await Contact.create({ contactName: name, contactEmail: email, subject, message });
+        res.status(200).json({ contact });
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+}
+
+module.exports.customeMenu_get = async(req, res) => {
+    res.render('custome_menu');
+}
+
+module.exports.cart_post = async(req, res) => {
+    const { email } = req.body;
+    const { menu, userEmail, status } = req.body;
+
+    console.log(req.body);
+
+    try {
+        if (email) {
+            const cartGet = await Cart.getCartItems(email);
+            res.status(200).json({ cartGet });
+            console.log(email);
+        }
+
+        if (userEmail) {
+            const cartPost = await Cart.create({ menu, user: userEmail, status });
+            res.status(200).json({ cartPost });
+        }
+
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+}
+
+module.exports.cart_get = async(req, res) => {
+    res.render('cart');
+}
+
+module.exports.comment_get = async(req, res) => {
+    try {
+        const comments = await Comment.getComments();
+        res.status(200).json({ comments });
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+}
+
+module.exports.comment_post = async(req, res) => {
+    const { comment, name } = req.body;
+
+    try {
+        const comments = await Comment.create({ comment, commentName: name });
+        res.status(200).json({ comments });
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+}
+
+module.exports.order_post = async(req, res) => {
+    const { bunType, pattyType } = req.body;
+    console.log(bunType);
+    console.log(pattyType);
 }
 
 module.exports.signup_post = async(req, res) => {

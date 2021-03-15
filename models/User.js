@@ -8,22 +8,12 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please enter your name']
     },
-    username: {
-        type: String,
-        required: [true, 'Please enter your username'],
-        lowercase: true
-    },
     email: {
         type: String,
         required: [true, 'Please enter an email'],
         unique: true,
         lowercase: true,
         validate: [isEmail, 'Please enter a valid email']
-    },
-    mobile: {
-        type: String,
-        required: [true, 'Please enter your phone number'],
-        maxlength: [10, 'Phone number incorrect']
     },
     password: {
         type: String,

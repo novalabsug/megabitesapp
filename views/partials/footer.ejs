@@ -25,7 +25,6 @@
         <div class="home-contact">
             <h3>Contact Us</h3>
             <p>(+256) 786 890105</p>
-            <p>(+256) 786 890105</p>
             <p>(+033) 088 899005</p>
             <p>info@megabites.com</p>
             <p>reservation@megabites.com</p>
@@ -39,16 +38,18 @@
         </div>
         <div class="home-comment">
             <h3>Leave a comment</h3>
-            <form action="" class="comment">
+            <form class="comment">
                 <div class="input">
                     <label for="fullname">Full name</label>
-                    <input type="text" id="fullname" name="fullname" placeholder="eg. John Doe">
+                    <input type="text" id="fullname" name="commentName" placeholder="eg. John Doe">
+                    <div class="error name-error"></div>
                 </div>
                 <div class="input">
                     <label for="comment">Your comment</label>
                     <textarea name="comment" id="" cols="30" rows="5" placeholder="Your comment ..."></textarea>
+                    <div class="error comment-error"></div>
                 </div>
-                <button>Comment</button>
+                <input type="submit" value="submit" class="btn">
             </form>
         </div>
     </div>

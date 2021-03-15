@@ -23,7 +23,8 @@ mongoose.connect('mongodb://localhost/megaBites')
 // routes
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('index'));
-app.get('/menu', (req, res) => res.render('menu'));
+app.get('/menu', requireAuth, (req, res) => res.render('menu'));
 app.get('/reservation', requireAuth, (req, res) => res.render('reservation'));
 app.get('/about', (req, res) => res.render('about'));
+app.get('/contact', (req, res) => res.render('contact'));
 app.use(authRoutes);
