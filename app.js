@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./server/routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
-const { requireAuth, checkUser } = require('./server/middleware/authMiddleware');
+const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const cors = require('cors');
 
 const app = express();
@@ -10,15 +10,15 @@ const app = express();
 // view engine
 app.set('view engine', 'ejs');
 
-app.set('views', './client/views');
+app.set('views', 'views');
 
 // middleware
-app.use(express.static('client/public'));
+app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
-mongoose.connect('mongodb://localhost/megaBites')
+mongoose.connect('mongodb+srv://nova:novalabs@cluster0.qyhpo.mongodb.net/megabites?retryWrites=true&w=majority')
     .then((result) => app.listen(3000))
     .catch((err) => console.log(err));
 
