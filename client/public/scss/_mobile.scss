@@ -1,0 +1,827 @@
+    // @mixin mediaSm 
+    @media screen and (max-width: 500px) {
+        * {
+            align-items: center;
+            align-content: center;
+            text-align: center;
+            padding: 0 !important;
+        }
+        .gr {
+            display: flex !important;
+            flex-direction: column !important;
+            margin: 1rem 0.5rem !important;
+        }
+        .hide-on-small {
+            display: none !important;
+        }
+        .menu-nav {
+            padding: 2rem 1rem !important;
+        }
+        main {
+            padding: 2rem 0 !important;
+            position: relative;
+            background: $dark-color !important;
+            &#home {
+                .home-wrapper {
+                    .menu-icons {
+                        position: absolute;
+                        padding: 2rem 0;
+                        right: 2rem;
+                        display: flex;
+                        width: auto;
+                        z-index: 3;
+                        justify-content: space-evenly;
+                        background: $primary-color;
+                        padding: 0.5rem 1rem !important;
+                        border-radius: 2rem;
+                        li {
+                            list-style: none;
+                            margin: 0 0.5rem;
+                            a {
+                                i {
+                                    font-size: 1.5rem;
+                                    color: #000;
+                                    &:hover {
+                                        color: $secondary-color;
+                                    }
+                                }
+                            }
+                            &.profile {
+                                a {
+                                    i {
+                                        background: $secondary-color;
+                                        padding: 0.3rem;
+                                        border-radius: 50%;
+                                        color: $primary-color;
+                                        @include easeOut;
+                                        cursor: pointer;
+                                        &:hover {
+                                            background: #000;
+                                        }
+                                    }
+                                }
+                            }
+                            &.icon-cart {
+                                a {
+                                    position: relative;
+                                    p {
+                                        position: absolute;
+                                        top: -0.5rem;
+                                        right: -0.3rem;
+                                        font-size: 0.7rem;
+                                        border-radius: 3px;
+                                        z-index: 5;
+                                        font-weight: bold;
+                                        padding: 0.2rem 0.4rem !important;
+                                        background: $secondary-color;
+                                        visibility: hidden;
+                                        &.show {
+                                            visibility: visible;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .user-profile {
+                        position: absolute;
+                        border-radius: 2rem;
+                        top: 6rem;
+                        right: 0.5rem;
+                        width: auto;
+                        z-index: 3;
+                        display: none;
+                        @include easeOut;
+                        .user-profile-hdr {
+                            background: $primary-color;
+                            padding: 0.5rem 1.5rem !important;
+                            border-top-right-radius: 2rem;
+                            border-top-left-radius: 2rem;
+                            text-align: right;
+                            i {
+                                text-align: right;
+                                cursor: pointer;
+                                font-size: 1.5rem;
+                                color: $dark-color;
+                            }
+                        }
+                        .user-profile-menu {
+                            display: flex;
+                            background: $primary-color;
+                            padding: 1rem 1rem 1.5rem 1rem !important;
+                            border-bottom-right-radius: 2rem;
+                            border-bottom-left-radius: 2rem;
+                            a#username {
+                                font-size: 3rem;
+                                padding: 1rem;
+                                width: 80px;
+                                height: 80px;
+                                background: $dark-color;
+                                border-radius: 50%;
+                            }
+                            .wr {
+                                padding: 0 0.5rem !important;
+                                p {
+                                    font-size: 1rem;
+                                    color: #000;
+                                    text-align: left;
+                                    margin: 0 0 1rem 0;
+                                }
+                                a {
+                                    padding: 0.5rem 1rem !important;
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+                        &.active {
+                            display: block;
+                        }
+                    }
+                    .home-header {
+                        padding: 2rem !important;
+                        .header-text {
+                            width: 100% !important;
+                            padding: 1rem !important;
+                            h2 {
+                                font-size: 3rem !important;
+                                margin: 0.5rem 0 !important;
+                            }
+                            p {
+                                text-align: center !important;
+                            }
+                            .services {
+                                padding: 1rem !important;
+                                li {
+                                    padding: 0 .5rem !important;
+                                }
+                            }
+                            a.btn {
+                                padding: 0.5rem 1rem !important;
+                            }
+                        }
+                    }
+                    .services {
+                        padding: 2rem 0 !important;
+                        .services-wrapper {
+                            .service {
+                                padding: 2rem !important;
+                                background: $primary-color !important;
+                                .service-txt {
+                                    p {
+                                        color: $dark-color !important;
+                                    }
+                                }
+                            }
+                        }
+                        .ad-box {
+                            padding: 2rem 1rem !important;
+                            .app-ad {
+                                padding: 2rem 0 !important;
+                                display: flex !important;
+                                flex-direction: column !important;
+                                .app-img {
+                                    .app {
+                                        padding: 3rem 5rem !important;
+                                        .app-display {
+                                            padding: 5rem 0 0 0 !important;
+                                        }
+                                    }
+                                }
+                            }
+                            .app-txt {
+                                padding: 2rem 0 !important;
+                                h3 {
+                                    font-size: 3rem !important;
+                                }
+                                .app-store {
+                                    display: flex;
+                                    flex-direction: column;
+                                    padding: 2rem !important;
+                                    .store {
+                                        padding: 1rem 2rem !important;
+                                        margin: 1rem 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .home-testimony {
+                        padding: 2rem 0 !important;
+                        .testimony {
+                            display: flex !important;
+                            flex-direction: column !important;
+                            padding: 2rem !important;
+                            .testimony-box {
+                                padding: 1rem !important;
+                            }
+                        }
+                    }
+                }
+            }
+            &#menu {
+                .menu-wrapper {
+                    #notification {
+                        .notification-hdr {
+                            padding: 1rem 1.5rem !important;
+                        }
+                        .notifications {
+                            padding: 1rem 1.5rem !important;
+                        }
+                    }
+                    .menu-hdr {
+                        padding: 2rem 0 !important;
+                        h2 {
+                            font-size: 2.5rem;
+                        }
+                        .menu-hdr-nav {
+                            width: 100%;
+                            scroll-snap-type: x mandatory;
+                            h3 {
+                                scroll-snap-align: start;
+                                top: 0.5rem !important;
+                                font-size: 1.5rem;
+                                margin: 0 0.5rem 0 0 !important;
+                            }
+                            i {
+                                scroll-snap-align: start;
+                                font-size: 1.5rem;
+                                left: 6.5rem;
+                            }
+                            &:hover {
+                                i {
+                                    position: relative;
+                                    left: 4rem;
+                                }
+                            }
+                        }
+                    }
+                    .menu-modern {
+                        .menu-item-btns {
+                            ul {
+                                padding: 2rem 0 !important;
+                                overflow-x: auto;
+                                justify-content: space-between;
+                                li {
+                                    padding: 1rem 1.5rem !important;
+                                    margin: 0 1rem !important;
+                                }
+                            }
+                        }
+                        .menu-items {
+                            padding: 2rem !important;
+                            #menu-item {
+                                #menu {
+                                    .gr {
+                                        .burger {
+                                            padding: 2rem 1rem !important;
+                                            background: $primary-color;
+                                            border-radius: 2rem;
+                                            .burger-img {
+                                                img {
+                                                    border-radius: 50%;
+                                                }
+                                            }
+                                            .burger-txt {
+                                                p {
+                                                    color: $dark-color;
+                                                }
+                                            }
+                                            .add-to-cart {
+                                                position: relative;
+                                                top: 0;
+                                                visibility: visible;
+                                                background: none;
+                                                justify-content: space-evenly;
+                                                padding: 1rem 0 !important;
+                                                transform: translate3d(0, 0, 0);
+                                                a.favorite {
+                                                    i {
+                                                        color: $secondary-color !important;
+                                                    }
+                                                }
+                                                a.btn {
+                                                    margin: 0 1rem;
+                                                    padding: 0.5rem 1rem !important;
+                                                }
+                                            }
+                                        }
+                                        .pizza {
+                                            padding: 2rem 1rem !important;
+                                            background: $primary-color;
+                                            border-radius: 2rem;
+                                            .pizza-img {
+                                                img {
+                                                    border-radius: 50%;
+                                                }
+                                            }
+                                            .pizza-txt {
+                                                p {
+                                                    color: $dark-color;
+                                                }
+                                            }
+                                            .add-to-cart {
+                                                position: relative;
+                                                top: 0;
+                                                visibility: visible;
+                                                background: none;
+                                                justify-content: space-evenly;
+                                                padding: 1rem 0 !important;
+                                                transform: translate3d(0, 0, 0);
+                                                a.favorite {
+                                                    i {
+                                                        color: $secondary-color !important;
+                                                    }
+                                                }
+                                                a.btn {
+                                                    margin: 0 1rem;
+                                                    padding: 0.5rem 1rem !important;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &#cart {
+                .cart-wrapper {
+                    .cart-hdr {
+                        display: block;
+                        padding: 2rem 1rem !important;
+                        .cart-hdr-nav {
+                            i {
+                                font-size: 3rem;
+                            }
+                            h2 {
+                                font-size: 3rem;
+                            }
+                        }
+                        .cart-user-profile {
+                            padding: 1rem 0.5rem !important;
+                            p {
+                                text-align: right !important;
+                            }
+                        }
+                    }
+                    .cart-content {
+                        padding: 2rem 1rem !important;
+                        .cart-full {
+                            form {
+                                .cart-full-hdr {
+                                    overflow-x: auto;
+                                    width: auto;
+                                    div {
+                                        padding: 1rem 2rem !important;
+                                        &.order {
+                                            width: auto;
+                                        }
+                                        &.order-price {
+                                            width: auto;
+                                        }
+                                        &.order-quantity {
+                                            width: auto;
+                                        }
+                                        &.order-subtotal {
+                                            width: auto;
+                                        }
+                                        h3 {
+                                            font-size: 1.5rem;
+                                        }
+                                    }
+                                }
+                                .cart-full-menu {
+                                    overflow-x: auto;
+                                    .order-item {
+                                        div {
+                                            padding: 0.5rem 1rem !important;
+                                            &.order {
+                                                width: 30%;
+                                                display: block !important;
+                                                .order-img {
+                                                    img {
+                                                        width: 90px;
+                                                        height: 90px;
+                                                    }
+                                                }
+                                                .order-txt {
+                                                    padding: 0.5rem 1rem;
+                                                    text-align: left;
+                                                    h3 {
+                                                        font-size: 1.2rem;
+                                                        color: $secondary-color;
+                                                    }
+                                                }
+                                            }
+                                            &.order-price {
+                                                width: auto;
+                                            }
+                                            &.order-quantity {
+                                                width: auto;
+                                            }
+                                            &.order-subtotal {
+                                                width: auto;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &#contact {
+                .contact-wrapper {
+                    .contact-hdr {
+                        h2 {
+                            font-size: 2rem;
+                        }
+                    }
+                    .di {
+                        flex-direction: column;
+                        padding: 1rem 2rem !important;
+                        .contact-details {
+                            width: 100% !important;
+                            .contact-address {
+                                width: 100% !important;
+                                padding: 1rem !important;
+                                align-items: center;
+                                text-align: center;
+                            }
+                            .contact-number {
+                                padding: 1rem !important;
+                                align-items: center;
+                                text-align: center;
+                            }
+                            .delivery-contact {
+                                padding: 1rem !important;
+                                align-items: center;
+                                text-align: center;
+                                .delivery-contact-txt {
+                                    padding: 0 1rem !important;
+                                    h3 {
+                                        font-size: 1.5rem !important;
+                                    }
+                                }
+                            }
+                            .delivery-info {
+                                padding: 1rem !important;
+                                align-items: center;
+                                text-align: center;
+                                .delivery-contact-txt {
+                                    padding: 0 1rem !important;
+                                    h3 {
+                                        font-size: 1.5rem !important;
+                                    }
+                                }
+                            }
+                        }
+                        .send-message {
+                            width: 100%;
+                            padding: 2rem 0 !important;
+                            h4 {
+                                font-size: 2rem !important;
+                            }
+                            form {
+                                .input {
+                                    padding: 0.5rem !important;
+                                    input {
+                                        padding: 0.5rem 1rem !important;
+                                        text-align: left;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    #maps {
+                        iframe {
+                            height: 300;
+                        }
+                    }
+                }
+            }
+            &#about {
+                .about-wrapper {
+                    .about-hdr {
+                        padding: 2rem 0 !important;
+                        h2 {
+                            font-size: 2rem;
+                        }
+                    }
+                    .di {
+                        flex-direction: column;
+                        padding: 0 2rem !important;
+                        .about-history {
+                            h2 {
+                                font-size: 2.5rem !important;
+                            }
+                            p {
+                                padding: 0.5rem 0 !important;
+                            }
+                            .services {
+                                li {
+                                    padding: 0 0.5rem !important;
+                                }
+                            }
+                            .mission {
+                                padding: 1rem 0 !important;
+                            }
+                            .vision {
+                                padding: 1rem 0 !important;
+                            }
+                        }
+                        .history-img {
+                            display: none;
+                        }
+                    }
+                }
+                .home-testimony {
+                    padding: 2rem 0 !important;
+                    .testimony {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        padding: 2rem !important;
+                        .testimony-box {
+                            padding: 1rem !important;
+                        }
+                    }
+                }
+            }
+            &#reservation {
+                padding: 2rem !important;
+                height: 100vh !important;
+                .reservation-hdr {
+                    padding: 2rem 0.5rem !important;
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+                }
+                form {
+                    width: 100% !important;
+                    padding: 3rem !important;
+                    align-items: left;
+                    align-content: left;
+                    text-align: left;
+                    h3 {
+                        display: none;
+                    }
+                    .input {
+                        padding: 0.5rem 0 !important;
+                        justify-content: left;
+                        align-items: left;
+                        text-align: left;
+                        position: relative;
+                        label {
+                            position: relative;
+                            width: 100%;
+                            left: 1rem;
+                            text-align: left !important;
+                        }
+                        input {
+                            padding: 0.5rem 1rem !important;
+                            text-align: left;
+                        }
+                        i {
+                            position: absolute;
+                            left: 1rem;
+                        }
+                    }
+                    button.btn {
+                        padding: 0.5rem 1rem !important;
+                    }
+                }
+            }
+            &#signup {
+                padding: 2rem !important;
+                height: 100vh !important;
+                .signup-hdr {
+                    padding: 2rem 0.5rem !important;
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+                }
+                form {
+                    width: 100% !important;
+                    padding: 3rem 1rem !important;
+                    align-items: left;
+                    align-content: left;
+                    text-align: left;
+                    h3 {
+                        display: none;
+                    }
+                    .input {
+                        padding: 0.5rem 0 !important;
+                        justify-content: left;
+                        align-items: left;
+                        text-align: left;
+                        position: relative;
+                        label {
+                            position: relative;
+                            width: 100%;
+                            left: 1rem;
+                            text-align: left !important;
+                        }
+                        input {
+                            padding: 0.5rem 1rem !important;
+                            text-align: left;
+                        }
+                        i {
+                            position: absolute;
+                            left: 1rem;
+                        }
+                    }
+                    .form-txt {
+                        padding: 2rem 0 !important;
+                    }
+                    button.btn {
+                        padding: 0.5rem 1rem !important;
+                    }
+                }
+            }
+            &#signin {
+                padding: 2rem !important;
+                height: 100vh !important;
+                .signin-hdr {
+                    padding: 2rem 0.5rem !important;
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+                }
+                form {
+                    width: 100% !important;
+                    padding: 3rem 1rem !important;
+                    align-items: left;
+                    align-content: left;
+                    text-align: left;
+                    h3 {
+                        display: none;
+                    }
+                    .input {
+                        padding: 0.5rem 0 !important;
+                        justify-content: left;
+                        align-items: left;
+                        text-align: left;
+                        position: relative;
+                        label {
+                            position: relative;
+                            width: 100%;
+                            left: 1rem;
+                            text-align: left !important;
+                        }
+                        input {
+                            padding: 0.5rem 1rem !important;
+                            text-align: left;
+                        }
+                        i {
+                            position: absolute;
+                            left: 1rem;
+                        }
+                    }
+                    .form-txt {
+                        padding: 2rem 0 !important;
+                    }
+                    button.btn {
+                        padding: 0.5rem 1rem !important;
+                    }
+                }
+            }
+        }
+        #footer {
+            padding: 2rem !important;
+            border: none !important;
+            .footer-body {
+                .home-locate {
+                    padding: 1rem 2rem !important;
+                    .icons {
+                        justify-content: center !important;
+                    }
+                }
+                .home-comment {
+                    padding: 1rem 2rem !important;
+                    form {
+                        .input {
+                            input {
+                                padding: 0.5rem 1rem !important;
+                                text-align: left !important;
+                            }
+                            textarea {
+                                padding: 0.5rem 1rem !important;
+                                text-align: left !important;
+                            }
+                        }
+                        input {
+                            &.btn {
+                                padding: 0.5rem 1rem !important;
+                            }
+                        }
+                    }
+                }
+                .home-contacts {
+                    padding: 1rem 2rem !important;
+                }
+                .home-navlinks {
+                    padding: 1rem 2rem !important;
+                }
+            }
+        }
+    }
+    
+    // @mixin mediaMd 
+    @media screen and (max-width: 768px) {
+        * {
+            align-items: center;
+            align-content: center;
+            text-align: center;
+        }
+        .hide-on-large {
+            display: block;
+        }
+        .hide-on-small {
+            display: none;
+        }
+        .d2 {
+            display: block;
+        }
+        .menu-nav {
+            padding: 2rem 1rem !important;
+        }
+        main {
+            padding: 2rem 0 !important;
+            background: $dark-color !important;
+            .home-wrapper {
+                .home-header {
+                    .header-text {
+                        h2 {
+                            font-size: 2rem;
+                        }
+                        p {
+                            text-align: center !important;
+                        }
+                    }
+                }
+                .img {
+                    img {
+                        display: none;
+                    }
+                }
+                .home-gallery {
+                    .gallery {
+                        width: 100%;
+                        columns: 1 !important;
+                        grid-auto-rows: auto;
+                        column-gap: 0;
+                        .box {
+                            img {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            &#menu,
+            &#about {
+                .menu-wrapper,
+                .about-wrapper {}
+            }
+        }
+        .home-testimony {
+            h1 {
+                text-align: center;
+                font-size: 2rem;
+            }
+            .testimony {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-gap: 4rem;
+            }
+        }
+        footer#footer {
+            .footer-body {
+                display: grid;
+                grid-template-columns: 1fr;
+                div {
+                    padding: 1rem 0;
+                }
+            }
+        }
+        main#signup,
+        main#signin,
+        main#reservation {
+            padding: 5rem 0;
+        }
+    }
+    
+    // @mixin mediaLg 
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+        .hide-on-large {
+            display: none;
+        }
+    }
+    
+    // @mixin mediaXL 
+    @media screen and (min-width: 1171px) {
+        .hide-on-large {
+            display: none;
+        }
+    }

@@ -1,0 +1,115 @@
+nav {
+    &.menu-nav {
+        display: flex;
+        padding: 1rem 2rem;
+        justify-content: space-between;
+        background: #000;
+        .menu-header {
+            h2 {
+                font-size: 1.5rem;
+                color: $secondary-color;
+                text-align: center;
+                span.text-secondary {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+        // Menu button
+        .menu-btn {
+            position: relative;
+            z-index: 5;
+            right: 35px;
+            top: 10px;
+            cursor: pointer;
+            @include easeOut;
+            .btn-line {
+                width: 28px;
+                height: 3px;
+                margin: 0 0 5px 0;
+                background: $primary-color;
+                @include easeOut;
+            }
+            //rotate into x with menu lines
+            &.close {
+                transform: rotate(180deg);
+                .btn-line {
+                    //Line 1-rotate
+                    &:nth-child(1) {
+                        transform: rotate(45deg) translate(5px, 5px);
+                    }
+                    //Line 2 - rotate
+                    &:nth-child(2) {
+                        opacity: 0;
+                    }
+                    //Line 3 - rotate
+                    &:nth-child(3) {
+                        transform: rotate(-45deg) translate(7px, -6px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Menu overlay
+#mobile-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    visibility: hidden;
+    z-index: 4;
+    &.show {
+        visibility: visible;
+    }
+    .nav-links {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        float: right;
+        width: 80%;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background: #000;
+        list-style: none;
+        transform: translate3d(0, 100%, 0);
+        @include easeOut;
+        &.show {
+            //Slide in from top
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    .nav-item {
+        transform: translate3d(600px, 0, 0);
+        @include easeOut;
+        &.show {
+            //Slide in from right
+            transform: translate3d(0, 0, 0);
+        }
+        &.current>a {
+            color: $secondary-color;
+        }
+    }
+    .nav-link {
+        display: inline-block;
+        position: relative;
+        font-size: 30px;
+        text-transform: uppercase;
+        padding: 1rem 0 !important;
+        font-weight: 300;
+        color: #fff;
+        text-decoration: none;
+        @include easeOut;
+        &:hover {
+            color: $secondary-color;
+        }
+    }
+}
+
+//Delay each nav item slide by 0,1s
+@for $x from 1 through 3 {
+    .nav-item:nth-child(#{$x}) {
+        transition-delay: $x * 0.5s;
+    }
+}

@@ -1,0 +1,74 @@
+<%- include('partials/header'); -%>
+
+    <div class="hide-on-large">
+        <%- include('partials/headerMobile'); -%>
+    </div>
+
+    <main id="cart">
+        <div class="cart-header">
+            <div class="cart-header-wrapper">
+                <div class="hide-on-small">
+                    <%- include('partials/headerNav'); -%>
+                </div>
+            </div>
+        </div>
+        <div class="cart-wrapper">
+            <div class="cart-hdr">
+                <div class="cart-hdr-nav">
+                    <i class="lni lni-cart"></i>
+                    <h2>your cart</h2>
+                </div>
+                <div class="cart-user-profile">
+                    <% if(user) { %>
+                        <p><i class="lni lni-user"></i>
+                            <%= user.name %>
+                        </p>
+                        <p><i class="lni lni-envelope"></i>
+                            <%= user.email %>
+                        </p>
+                        <% } %>
+                </div>
+            </div>
+            <div class="cart-content">
+                <div class="cart-empty">
+                    <div class="cart-empty-img">
+                        <i class="lni lni-emoji-sad"></i>
+                    </div>
+                    <div class="cart-empty-txt">
+                        <h3>You currently don't have any item in your cart ?</h3>
+                        <a href="/menu" class="btn">back to menu</a>
+                    </div>
+                </div>
+                <div class="cart-full">
+                    <form>
+                        <div class="cart-full-hdr">
+                            <div class="order">
+                                <h3>Order</h3>
+                            </div>
+                            <div class="order-price">
+                                <h3>Price</h3>
+                            </div>
+                            <div class="order-quantity">
+                                <h3>Quantity</h3>
+                            </div>
+                            <div class="order-subtotal">
+                                <h3>Sub Total</h3>
+                            </div>
+                        </div>
+                        <div class="cart-full-menu"></div>
+                        <div class="cart-full-footer">
+                            <div class="coupon">
+                                <h4>Redeem your coupon</h4>
+                                <input type="text" id="coupon" name="coupon" placeholder="Coupon code">
+                            </div>
+                            <div class="cart-total"></div>
+                        </div>
+                        <input type="submit" class="btn" id="checkout" value="Proceed to checkout">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/footer'); -%>
+    </main>
+
+    <%- include('partials/footerNav'); -%>

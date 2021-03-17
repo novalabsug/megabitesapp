@@ -1,0 +1,83 @@
+<header>
+    <div class="menu-nav-contacts">
+        <div class="menu-delivery">
+            <img src="/images/menus/icons/049-delivery truck.png" alt="" srcset="">
+            <div class="menu-delivery-txt">
+                <h3>For delivery</h3>
+                <h5>Call: +256 776 900 332</h5>
+            </div>
+        </div>
+    </div>
+    <div class="menu-nav">
+        <ul class="nav-link">
+            <li class="nav-items current">
+                <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-items">
+                <a href="/menu" class="nav-link">Menu</a>
+            </li>
+            <li class="nav-items">
+                <a href="/reservation" class="nav-link">Reservation</a>
+            </li>
+            <li class="nav-items">
+                <a href="/contact" class="nav-link">Contact Us</a>
+            </li>
+            <li class="nav-items">
+                <a href="/about" class="nav-link">About</a>
+            </li>
+            <% if(user) { %>
+                <li class="nav-items">
+                    <a href="/logout" class="nav-link btn">Log Out</a>
+                </li>
+                <% } else { %>
+                    <li class="nav-items">
+                        <a href="/signup" class="nav-link btn">Sign Up</a>
+                    </li>
+                    <% } %>
+        </ul>
+    </div>
+    <div class="menu-icons">
+        <ul>
+            <% if(user) { %>
+                <li class="profile">
+                    <a class="nav-link user-profile-btn"><i class="lni lni-user"></i></a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link"><i class="lni lni-popup"></i></a>
+                </li>
+                <li class="icon-cart">
+                    <a href="#" class="nav-link">
+                        <p class="cart-size"></p><i class="lni lni-cart"></i>
+                    </a>
+                </li>
+                <% } else { %>
+                    <li>
+                        <a href="#" class="nav-link"><i class="lni lni-popup"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link"><i class="lni lni-cart"></i></a>
+                    </li>
+                    <% } %>
+        </ul>
+
+        <% if(user) { %>
+            <div class="user-profile">
+                <div class="user-profile-hdr">
+                    <i class="lni lni-close" id="close-user-profile"></i>
+                </div>
+                <div class="user-profile-menu">
+                    <a id="username"></a>
+                    <div class="wr">
+                        <p class="username" hidden>
+                            <%= user.name %>
+                        </p>
+                        <p class="email">
+                            <%= user.email %>
+                        </p>
+                        <a href="/profile" class="btn">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+</header>
