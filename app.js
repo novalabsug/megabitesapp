@@ -18,8 +18,10 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
+const PORT = process.env.PORT || 3000;
+
 mongoose.connect('mongodb+srv://nova:novalabs@cluster0.qyhpo.mongodb.net/megabites?retryWrites=true&w=majority')
-    .then((result) => app.listen(3000))
+    .then((result) => app.listen(PORT, () => console.log(`Listening on port ${PORT}`)))
     .catch((err) => console.log(err));
 
 // routes
