@@ -5,6 +5,12 @@
             <a href="/"><i class="lni lni-home"></i></a>
         </div>
         <form method="post" id="reservation">
+            <div id="notification">
+                <div class="notification-hdr">
+                    <i class="lni lni-alarm"></i>
+                </div>
+                <div class="notifications"></div>
+            </div>
             <% if (user){ %>
                 <h3>Make a reservation</h3>
                 <div class="input hidden" hidden>
@@ -19,13 +25,14 @@
                     <input type="text" name="email" placeholder="example@email.com" value="<%= user.email %>">
                     <div class="email error"></div>
                 </div>
-                <div class="input hidden" hidden>
-                    <label for="mobile">Phone Number</label>
-                    <i class="lni lni-phone"></i>
-                    <input type="text" name="mobile" placeholder="7xx xxx xxx" value="<%= user.mobile %>">
-                    <div class="mobile error"></div>
-                </div>
+
                 <% } %>
+                    <div class="input">
+                        <label for="mobile">Phone Number</label>
+                        <i class="lni lni-phone"></i>
+                        <input type="text" name="mobile" placeholder="7xx xxx xxx">
+                        <div class="mobile error"></div>
+                    </div>
                     <div class="input">
                         <label for="date">Reservation Date</label>
                         <i class="lni lni-calendar"></i>
@@ -59,6 +66,21 @@
         const dateError = document.querySelector('.date.error');
         const timeError = document.querySelector('.time.error');
         const seatsError = document.querySelector('.seats.error');
+
+        const showNotificationMenu = (msg) => {
+            const notificationPopupMenu = document.querySelector('#notification');
+            const notificationMenu = document.querySelector('.notifications');
+
+            const p = document.createElement('p');
+            p.innerText = 'Reservation ' + msg + ' ' + 'has been placed';
+
+            notificationMenu.appendChild(p);
+            notificationPopupMenu.classList.add('show');
+            setTimeout(() => {
+                notificationMenu.removeChild(p);
+                notificationPopupMenu.classList.remove('show');
+            }, 3000);
+        }
 
         form.addEventListener('submit', async(e) => {
             e.preventDefault();
@@ -97,7 +119,6 @@
                 });
 
                 const data = await res.json();
-
                 console.log(data.errors);
 
                 if (data.errors) {
@@ -110,6 +131,7 @@
                 }
 
                 if (data.reservation) {
+                    showNotificationMenu(data.reservation);
                     location.assign('/');
                 }
             } catch (err) {

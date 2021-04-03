@@ -15,6 +15,7 @@ router.post('/contact', authController.contact_post);
 
 router.post('/cart', authController.cart_post);
 router.get('/cart', authController.cart_get);
+router.post('/cartDelete', authController.cart_delete_post);
 
 router.post('/menu', authController.menus_post);
 
@@ -25,6 +26,9 @@ router.post('/signup', authController.signup_post);
 
 router.get('/login', authController.login_get);
 router.post('/login', authController.login_post);
+
+// router.get('/likes', authController.likes_get);
+router.post('/likes', authController.likes_post);
 
 router.get('/logout', authController.logout_get);
 

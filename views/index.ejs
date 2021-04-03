@@ -4,155 +4,123 @@
     </div>
 
     <main id="home">
+        <div class="hide-on-large">
+            <%- include('partials/headerMobile2'); -%>
+        </div>
         <div class="home-wrapper">
             <div class="hide-on-small">
                 <%- include('partials/headerNav'); -%>
             </div>
 
-            <% if (user) { %>
-                <ul class="menu-icons hide-on-large">
-                    <li class="profile mobile">
-                        <a class="nav-link user-profile-btn"><i class="lni lni-user"></i></a>
-                    </li>
-                    <li class="hide-on-large">
-                        <a href="#" class="nav-link hide-on-large"><i class="lni lni-popup"></i></a>
-                    </li>
-                    <li class="icon-cart hide-on-large">
-                        <a href="#" class="nav-link hide-on-large">
-                            <p class="cart-size"></p><i class="lni lni-cart"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="user-profile mobile hide-on-large">
-                    <div class="user-profile-hdr">
-                        <i class="lni lni-close" id="close-user-profile"></i>
+            <div class="d2 hide-on-small">
+                <div class="logo hide-on-small">
+                    <img src="/images/chef.png" alt="" class="hide-on-small">
+                    <h1 class="text-primary hide-on-small">Mega
+                        <h2 class="text-secondary hide-on-small">Bites</h2>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- ----------------- main content --------------------------------------------------------------------------------- -->
+            <h4 class="text-primary hide-on-small">Tasty treats on the go</h4>
+            <div class="home-header">
+                <div class="header-text">
+                    <h2>Who are we ?</h2>
+                    <p>Mega bites is a 5 Star bar and restaurant located in the heart of the bustling city. We offer a wide range of local and international cuisines. With ample parking space and a beautiful scenery over looking city square, we offer world
+                        class service
+                    </p>
+                    <ul class="services">
+                        <li class="service">Open 24/7</li>
+                        <li class="service">Wellstorked bar</li>
+                        <li class="service">Ample parking</li>
+                        <li class="service">Reservation</li>
+                        <li class="service">24Hrs Customer service</li>
+                    </ul>
+                    <a href="/reservation" class="btn-getstarted btn">Make reservation</a>
+                </div>
+            </div>
+
+            <div class="services di">
+                <div class="services-wrapper gr gr-3">
+                    <div class="service">
+                        <div class="service-img">
+                            <img src="/images/fast delivery service.svg" alt="" srcset="">
+                        </div>
+                        <div class="service-txt">
+                            <h3>Fast food delivery</h3>
+                            <p>We will get you your food fast, on time with no delays.</p>
+                        </div>
                     </div>
-                    <div class="user-profile-menu">
-                        <a id="username"></a>
-                        <div class="wr">
-                            <p class="username" hidden>
-                                <%= user.name %>
-                            </p>
-                            <p class="email">
-                                <%= user.email %>
-                            </p>
-                            <a href="/" class="btn">Edit Profile</a>
+                    <div class="service">
+                        <div class="service-img">
+                            <img src="/images/customerCare_1.png" alt="" srcset="">
+                        </div>
+                        <div class="service-txt">
+                            <h3>Customer TLC</h3>
+                            <p>Our customers are our major priority, thats why we have a dedicated customer care team</p>
+                        </div>
+                    </div>
+                    <div class="service">
+                        <div class="service-img">
+                            <img src="/images/order.png" alt="" srcset="">
+                        </div>
+                        <div class="service-txt">
+                            <h3>Easy Online Order</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum.</p>
                         </div>
                     </div>
                 </div>
 
-                <% } %>
-
-                    <div class="d2 hide-on-small">
-                        <div class="logo hide-on-small">
-                            <img src="/images/chef.png" alt="" class="hide-on-small">
-                            <h1 class="text-primary hide-on-small">Mega
-                                <h2 class="text-secondary hide-on-small">Bites</h2>
-                            </h1>
+                <!-- ---------------------- div for ads ---------------------------------------------------------------------------- -->
+                <div class="di ad-box">
+                    <div class="order-ad" hidden>
+                        <div class="order-txt" id="modal">
+                            <!-- <img src="/images/order_btn.png" alt="" srcset=""> -->
+                            <h3>Place your order now</h3>
+                            <a href="menu" class="btn">Order Now</a>
                         </div>
                     </div>
-
-                    <!-- ----------------- main content --------------------------------------------------------------------------------- -->
-                    <h4 class="text-primary hide-on-small">Tasty treats on the go</h4>
-                    <div class="home-header">
-                        <div class="header-text">
-                            <h2>Who are we ?</h2>
-                            <p>Mega bites is a 5 Star bar and restaurant located in the heart of the bustling city. We offer a wide range of local and international cuisines. With ample parking space and a beautiful scenery over looking city square, we offer
-                                world class service
-                            </p>
-                            <ul class="services">
-                                <li class="service">Open 24/7</li>
-                                <li class="service">Wellstorked bar</li>
-                                <li class="service">Ample parking</li>
-                                <li class="service">Reservation</li>
-                                <li class="service">24Hrs Customer service</li>
-                            </ul>
-                            <a href="/reservation" class="btn-getstarted btn">Make reservation</a>
-                        </div>
-                    </div>
-
-                    <div class="services di">
-                        <h3>Our Services</h3>
-                        <div class="services-wrapper gr gr-3">
-                            <div class="service">
-                                <div class="service-img">
-                                    <img src="/images/fast delivery service.svg" alt="" srcset="">
+                    <div class="app-ad">
+                        <div class="app-img">
+                            <div class="app">
+                                <div class="app-display">
+                                    <img src="/images/chef.png" alt="" srcset="">
+                                    <h3>MegaBites</h3>
                                 </div>
-                                <div class="service-txt">
-                                    <h3>Fast food delivery</h3>
-                                    <p>We will get you your food fast, on time with no delays.</p>
-                                </div>
-                            </div>
-                            <div class="service">
-                                <div class="service-img">
-                                    <img src="/images/customerCare_1.png" alt="" srcset="">
-                                </div>
-                                <div class="service-txt">
-                                    <h3>Customer TLC</h3>
-                                    <p>Our customers are our major priority, thats why we have a dedicated customer care team</p>
-                                </div>
-                            </div>
-                            <div class="service">
-                                <div class="service-img">
-                                    <img src="/images/person_eating.png" alt="" srcset="">
-                                </div>
-                                <div class="service-txt">
-                                    <h3>Tasty food menu</h3>
-                                    <p>Browse through our menu to view our food varieties and place your order</p>
+                                <div class="app-menu">
+                                    <i class="lni lni-line-double"></i>
+                                    <i class="lni lni-home"></i>
+                                    <i class="lni lni-chevron-right"></i>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- ---------------------- div for ads ---------------------------------------------------------------------------- -->
-                        <div class="di ad-box">
-                            <div class="order-ad" hidden>
-                                <div class="order-txt" id="modal">
-                                    <img src="/images/order_btn.png" alt="" srcset="">
-                                    <h3>Place your order now</h3>
-                                    <a href="menu" class="btn">Order Now</a>
-                                </div>
-                            </div>
-                            <div class="app-ad">
-                                <div class="app-img">
-                                    <div class="app">
-                                        <div class="app-display">
-                                            <img src="/images/chef.png" alt="" srcset="">
-                                            <h3>MegaBites</h3>
-                                        </div>
-                                        <div class="app-menu">
-                                            <i class="lni lni-line-double"></i>
-                                            <i class="lni lni-home"></i>
-                                            <i class="lni lni-chevron-right"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="app-txt">
-                                    <h3>Get our app today</h3>
-                                    <h4>Download from apple store and play store</h4>
-                                    <div class="app-store">
-                                        <div class="play-store store">
-                                            <span>
+                        <div class="app-txt">
+                            <h3>Get our app today</h3>
+                            <h4>Download from apple store and play store</h4>
+                            <div class="app-store">
+                                <div class="play-store store">
+                                    <span>
                                         <i class="lni lni-android-original"></i>
                                         <p>google play</p>
                                     </span>
-                                        </div>
-                                        <div class="apple-store store">
-                                            <span>
+                                </div>
+                                <div class="apple-store store">
+                                    <span>
                                         <i class="lni lni-apple"></i>
                                         <p>apple store</p>
                                     </span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="home-testimony">
-                        <h3>What our guests say</h3>
-                        <div class="testimony">
-                        </div>
-                    </div>
+            <div class="home-testimony">
+                <h3>What our guests say</h3>
+                <div class="testimony">
+                </div>
+            </div>
         </div>
         <%- include('partials/footer'); -%>
     </main>

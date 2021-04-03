@@ -5,6 +5,9 @@
     </div>
 
     <main id="cart">
+        <div class="hide-on-large">
+            <%- include('partials/headerMobile2'); -%>
+        </div>
         <div class="cart-header">
             <div class="cart-header-wrapper">
                 <div class="hide-on-small">
@@ -18,7 +21,7 @@
                     <i class="lni lni-cart"></i>
                     <h2>your cart</h2>
                 </div>
-                <div class="cart-user-profile">
+                <div class="cart-user-profile hide-on-small">
                     <% if(user) { %>
                         <p><i class="lni lni-user"></i>
                             <%= user.name %>
@@ -40,7 +43,7 @@
                     </div>
                 </div>
                 <div class="cart-full">
-                    <form>
+                    <form class="hide-on-small">
                         <div class="cart-full-hdr">
                             <div class="order">
                                 <h3>Order</h3>
@@ -62,6 +65,18 @@
                                 <input type="text" id="coupon" name="coupon" placeholder="Coupon code">
                             </div>
                             <div class="cart-total"></div>
+                        </div>
+                        <input type="submit" class="btn" id="checkout" value="Proceed to checkout">
+                    </form>
+                    <form action="" class="hide-on-large mobile-cart">
+                        <div class="cart-full-menu"></div>
+                        <div class="cart-mobile-footer">
+                            <div class="cart-mobile-total"></div>
+                            <div class="coupon">
+                                <h4>Redeem your coupon</h4>
+                                <input type="text" id="coupon" name="coupon" placeholder="Coupon code">
+                            </div>
+
                         </div>
                         <input type="submit" class="btn" id="checkout" value="Proceed to checkout">
                     </form>

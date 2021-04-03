@@ -4,6 +4,8 @@ const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const cors = require('cors');
+const multer = require('multer');
+const { fileLoader } = require('ejs');
 
 const app = express();
 
@@ -17,11 +19,21 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+// app.use(multer({
+//     dest: './uploads/',
+//     rename: function(fieldname, filename) {
+//         return filename;
+//     }
+// }));
 
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect('mongodb+srv://nova:novalabs@cluster0.qyhpo.mongodb.net/megabites?retryWrites=true&w=majority')
-    .then((result) => app.listen(PORT, () => console.log(`Listening on port ${PORT}`)))
+// mongoose.connect('mongodb+srv://nova:novalabs@cluster0.qyhpo.mongodb.net/megabites?retryWrites=true&w=majority')
+//     .then((result) => app.listen(PORT, () => console.log(`Listening on port ${PORT}`)))
+//     .catch((err) => console.log(err));
+
+mongoose.connect('mongodb://localhost:27017/megaBites')
+    .then((result) => app.listen(PORT, () => console.log(`Listening to port ${PORT}`)))
     .catch((err) => console.log(err));
 
 // routes

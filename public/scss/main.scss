@@ -39,6 +39,44 @@ button {
     outline: none;
 }
 
+#notification {
+    position: fixed;
+    z-index: 5;
+    top: 5rem;
+    right: 2rem;
+    background: rgb(235, 235, 235);
+    border-radius: 2rem;
+    width: 300px;
+    transform: translate3d(0, -100%, 0);
+    visibility: hidden;
+    @include easeOut;
+    &.show {
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+    }
+    .notification-hdr {
+        padding: 1rem 2rem;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        background: $secondary-color;
+        display: flex;
+        i {
+            font-size: 1.5rem;
+            color: $primary-color;
+        }
+    }
+    .notifications {
+        padding: 1rem 2rem;
+        display: flex;
+        flex-direction: column;
+        p {
+            color: #000;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+    }
+}
+
 header {
     display: flex;
     justify-content: center;
@@ -151,6 +189,25 @@ header {
                         }
                     }
                 }
+                &.favorites {
+                    a {
+                        position: relative;
+                        p {
+                            position: absolute;
+                            top: -1rem;
+                            right: -0.5rem;
+                            font-size: 0.7rem;
+                            border-radius: 3px;
+                            font-weight: bold;
+                            padding: 0.2rem 0.4rem;
+                            background: $secondary-color;
+                            visibility: hidden;
+                            &.show {
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
                 &.icon-cart {
                     a {
                         position: relative;
@@ -176,6 +233,7 @@ header {
             position: absolute;
             border-radius: 2rem;
             top: 6rem;
+            z-index: 4;
             right: 0.5rem;
             width: auto;
             display: none;
@@ -325,17 +383,16 @@ main {
                     .service {
                         padding: 2rem 1rem;
                         border-radius: 2rem;
-                        margin: 0 2rem;
+                        margin: 0 0.5rem;
                         @include easeOut;
                         .service-img {
-                            padding: 0 2rem;
-                            height: 250px;
+                            padding: 0 1rem;
                             img {
                                 width: 90%;
                             }
                         }
                         .service-txt {
-                            padding: 2rem 0;
+                            padding: 1rem 0;
                             h3 {
                                 font-size: 2rem;
                                 font-weight: bold;
@@ -572,43 +629,6 @@ main {
         align-content: center;
         .menu-wrapper {
             padding: 2rem 5rem;
-            #notification {
-                position: fixed;
-                z-index: 5;
-                top: 5rem;
-                right: 2rem;
-                background: rgb(235, 235, 235);
-                border-radius: 2rem;
-                width: 300px;
-                transform: translate3d(0, -100%, 0);
-                visibility: hidden;
-                @include easeOut;
-                &.show {
-                    visibility: visible;
-                    transform: translate3d(0, 0, 0);
-                }
-                .notification-hdr {
-                    padding: 1rem 2rem;
-                    border-top-left-radius: 2rem;
-                    border-top-right-radius: 2rem;
-                    background: $secondary-color;
-                    display: flex;
-                    i {
-                        font-size: 1.5rem;
-                        color: $primary-color;
-                    }
-                }
-                .notifications {
-                    padding: 1rem 2rem;
-                    display: flex;
-                    flex-direction: column;
-                    p {
-                        color: #000;
-                        width: 100%;
-                        font-size: 1.2rem;
-                    }
-                }
-            }
             .menu-hdr {
                 padding: 2rem 3rem;
                 display: flex;
@@ -715,13 +735,13 @@ main {
                             display: block;
                         }
                         &.burger-menu {
-                            .burgers {
+                            .burgers-menu-wrapper {
                                 position: relative;
                                 .gr {
                                     padding: 3rem 0;
                                     .burger {
                                         position: relative;
-                                        padding: 2rem 0;
+                                        padding: 1rem 0;
                                         @include easeOut;
                                         .burger-img {
                                             img {
@@ -730,7 +750,7 @@ main {
                                             }
                                         }
                                         .burger-txt {
-                                            padding: 2rem;
+                                            padding: 2rem 1rem;
                                             h4 {
                                                 font-size: 1.5rem;
                                                 margin: 0.5rem 0;
@@ -740,8 +760,9 @@ main {
                                         .add-to-cart {
                                             position: absolute;
                                             display: flex;
+                                            flex-direction: column;
                                             justify-content: space-between;
-                                            padding: 3rem;
+                                            padding: 3rem 1rem;
                                             top: 10rem;
                                             right: 0;
                                             left: 0;
@@ -752,6 +773,7 @@ main {
                                             @include easeOut;
                                             a {
                                                 &.btn {
+                                                    margin: 0.5rem 0;
                                                     text-transform: uppercase;
                                                     i {
                                                         color: $primary-color;
@@ -769,8 +791,14 @@ main {
                                                         &:hover {
                                                             color: $secondary-color;
                                                         }
+                                                        &.lni-heart-filled {
+                                                            color: $secondary-color;
+                                                        }
                                                     }
                                                 }
+                                            }
+                                            p {
+                                                font-size: 1.5rem;
                                             }
                                         }
                                         &:hover {
@@ -804,206 +832,6 @@ main {
                                             }
                                         }
                                     }
-                                    .menu-special {
-                                        h3 {
-                                            margin: 2rem 0 3rem 0;
-                                            font-size: 3rem;
-                                            text-align: center;
-                                        }
-                                        form {
-                                            position: relative;
-                                            .buns {
-                                                background: $primary-color;
-                                                border-radius: 2rem;
-                                                .buns-hdr {
-                                                    padding: 2rem 5rem;
-                                                    background: $secondary-color;
-                                                    border-top-left-radius: 2rem;
-                                                    border-top-right-radius: 2rem;
-                                                    h4 {
-                                                        text-align: left;
-                                                        font-size: 2rem;
-                                                        color: $primary-color;
-                                                    }
-                                                }
-                                                .bun-selection {
-                                                    padding: 2rem 3rem;
-                                                    .bun-type {
-                                                        padding: 1rem;
-                                                        .bun-img {
-                                                            height: 130px;
-                                                            img {
-                                                                width: 100%;
-                                                            }
-                                                        }
-                                                        .bun-txt {
-                                                            padding: 0 0.5rem 1rem 0.5rem;
-                                                            position: relative;
-                                                            h4 {
-                                                                font-size: 1.2rem;
-                                                                text-align: center;
-                                                                color: #000;
-                                                            }
-                                                            i {
-                                                                color: $primary-color;
-                                                                background-color: $secondary-color;
-                                                                margin: 0.5rem 0;
-                                                                padding: 1rem;
-                                                                border-radius: 50%;
-                                                                text-align: center;
-                                                                position: absolute;
-                                                                left: 35%;
-                                                                cursor: pointer;
-                                                                transform: translate3d(0, 150%, 0);
-                                                                @include easeOut;
-                                                                visibility: hidden;
-                                                            }
-                                                        }
-                                                        &:hover {
-                                                            i {
-                                                                transform: translate3d(0, 0, 0);
-                                                                visibility: visible;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                .input {
-                                                    display: none;
-                                                }
-                                                .slider-nav {
-                                                    .back-btn {
-                                                        visibility: hidden;
-                                                    }
-                                                }
-                                            }
-                                            .patty {
-                                                background: $primary-color;
-                                                border-radius: 2rem;
-                                                .patty-hdr {
-                                                    padding: 2rem 5rem;
-                                                    background: $secondary-color;
-                                                    border-top-left-radius: 2rem;
-                                                    border-top-right-radius: 2rem;
-                                                    h4 {
-                                                        text-align: left;
-                                                        font-size: 2rem;
-                                                        color: $primary-color;
-                                                    }
-                                                }
-                                                .patty-selection {
-                                                    padding: 2rem 3rem;
-                                                    .patty-type {
-                                                        padding: 1rem;
-                                                        .patty-img {
-                                                            height: 130px;
-                                                            img {
-                                                                width: 100%;
-                                                            }
-                                                        }
-                                                        .patty-txt {
-                                                            padding: 0 0.5rem 1rem 0.5rem;
-                                                            position: relative;
-                                                            h4 {
-                                                                font-size: 1.2rem;
-                                                                text-align: center;
-                                                                color: #000;
-                                                            }
-                                                            i {
-                                                                color: $primary-color;
-                                                                background-color: $secondary-color;
-                                                                margin: 0.5rem 0;
-                                                                padding: 1rem;
-                                                                border-radius: 50%;
-                                                                position: absolute;
-                                                                left: 35%;
-                                                                cursor: pointer;
-                                                                transform: translate3d(0, 150%, 0);
-                                                                @include easeOut;
-                                                                visibility: hidden;
-                                                            }
-                                                        }
-                                                        &:hover {
-                                                            i {
-                                                                transform: translate3d(0, 0, 0);
-                                                                visibility: visible;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                .input {
-                                                    display: none;
-                                                }
-                                            }
-                                            .vegy {
-                                                background: $primary-color;
-                                                border-radius: 2rem;
-                                                .vegy-hdr {
-                                                    padding: 2rem 5rem;
-                                                    background: $secondary-color;
-                                                    border-top-left-radius: 2rem;
-                                                    border-top-right-radius: 2rem;
-                                                    h4 {
-                                                        text-align: left;
-                                                        font-size: 2rem;
-                                                        color: $primary-color;
-                                                    }
-                                                }
-                                                .vegy-selection {
-                                                    padding: 2rem 3rem;
-                                                    .vegy-type {
-                                                        padding: 1rem;
-                                                        .vegy-img {
-                                                            height: 130px;
-                                                            img {
-                                                                width: 100%;
-                                                            }
-                                                        }
-                                                        .vegy-txt {
-                                                            padding: 0 0.5rem 1rem 0.5rem;
-                                                            position: relative;
-                                                            h4 {
-                                                                font-size: 1.2rem;
-                                                                text-align: center;
-                                                                color: #000;
-                                                            }
-                                                            i {
-                                                                color: $primary-color;
-                                                                background-color: $secondary-color;
-                                                                margin: 0.5rem 0;
-                                                                padding: 1rem;
-                                                                left: 35%;
-                                                                border-radius: 50%;
-                                                                position: absolute;
-                                                                cursor: pointer;
-                                                                transform: translate3d(0, 150%, 0);
-                                                                @include easeOut;
-                                                                visibility: hidden;
-                                                            }
-                                                        }
-                                                        &:hover {
-                                                            i {
-                                                                transform: translate3d(0, 0, 0);
-                                                                visibility: visible;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                .input {
-                                                    display: none;
-                                                }
-                                                .slider-nav {
-                                                    input {
-                                                        outline: none;
-                                                        border: none;
-                                                        &:hover {
-                                                            background: #000;
-                                                            color: $primary-color;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -1013,7 +841,7 @@ main {
                                 font-weight: bold;
                                 text-transform: uppercase;
                             }
-                            .pizzas {
+                            .pizzas-menu-wrapper {
                                 position: relative;
                                 .gr {
                                     // position: absolute;
@@ -1021,7 +849,7 @@ main {
                                     padding: 2rem 0;
                                     .pizza {
                                         position: relative;
-                                        padding: 2rem 0;
+                                        padding: 1rem 0;
                                         @include easeOut;
                                         .pizza-img {
                                             img {
@@ -1030,7 +858,7 @@ main {
                                             }
                                         }
                                         .pizza-txt {
-                                            padding: 2rem;
+                                            padding: 2rem 1rem;
                                             h4 {
                                                 font-size: 1.5rem;
                                                 margin: 0.5rem 0;
@@ -1039,17 +867,46 @@ main {
                                         }
                                         .add-to-cart {
                                             position: absolute;
-                                            padding: 5rem 0 0 0;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: space-between;
+                                            padding: 3rem 1rem;
                                             top: 10rem;
                                             right: 0;
                                             left: 0;
-                                            height: 30%;
+                                            height: auto;
                                             transform: translate3d(0, 150%, 0);
                                             background-color: rgba(0, 0, 0, 0.514);
                                             visibility: hidden;
                                             @include easeOut;
                                             a {
-                                                text-transform: uppercase;
+                                                &.btn {
+                                                    margin: 0.5rem 0;
+                                                    text-transform: uppercase;
+                                                    i {
+                                                        color: $primary-color;
+                                                    }
+                                                }
+                                                &.favorite {
+                                                    i {
+                                                        color: $primary-color;
+                                                        font-size: 2rem;
+                                                        cursor: pointer;
+                                                        @include easeOut;
+                                                        &.clicked {
+                                                            color: $secondary-color;
+                                                        }
+                                                        &:hover {
+                                                            color: $secondary-color;
+                                                        }
+                                                        &.lni-heart-filled {
+                                                            color: $secondary-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            p {
+                                                font-size: 1.5rem;
                                             }
                                         }
                                         &:hover {
@@ -1068,31 +925,221 @@ main {
                                             .add-to-cart {
                                                 visibility: visible;
                                                 transform: translate3d(0, 0, 0);
+                                                a {
+                                                    &.btn {
+                                                        i {
+                                                            color: $primary-color;
+                                                        }
+                                                        &:hover {
+                                                            i {
+                                                                color: #000;
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
-                                    &.active {
-                                        display: grid;
-                                        position: relative;
-                                    }
                                 }
-                                a {
-                                    &#slider-btn {
-                                        position: absolute;
-                                        top: 15rem;
-                                        padding: 1rem 1.5rem;
-                                        border-radius: 50%;
-                                        font-size: 3rem;
-                                        cursor: pointer;
+                            }
+                        }
+                        &.rolex-menu {
+                            .rolex-menu-wrapper {
+                                position: relative;
+                                .gr {
+                                    padding: 3rem 0;
+                                    .rolex {
+                                        position: relative;
+                                        padding: 1rem 0;
                                         @include easeOut;
-                                        &.back-btn {
-                                            left: -5rem;
+                                        .rolex-img {
+                                            img {
+                                                width: 80%;
+                                                height: 80%;
+                                            }
                                         }
-                                        &.next-btn {
-                                            right: -5rem;
+                                        .rolex-txt {
+                                            padding: 2rem 1rem;
+                                            h4 {
+                                                font-size: 1.5rem;
+                                                margin: 0.5rem 0;
+                                                color: $secondary-color;
+                                            }
+                                        }
+                                        .add-to-cart {
+                                            position: absolute;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: space-between;
+                                            padding: 3rem 1rem;
+                                            top: 10rem;
+                                            right: 0;
+                                            left: 0;
+                                            height: auto;
+                                            transform: translate3d(0, 150%, 0);
+                                            background-color: rgba(0, 0, 0, 0.514);
+                                            visibility: hidden;
+                                            @include easeOut;
+                                            a {
+                                                &.btn {
+                                                    margin: 0.5rem 0;
+                                                    text-transform: uppercase;
+                                                    i {
+                                                        color: $primary-color;
+                                                    }
+                                                }
+                                                &.favorite {
+                                                    i {
+                                                        color: $primary-color;
+                                                        font-size: 2rem;
+                                                        cursor: pointer;
+                                                        @include easeOut;
+                                                        &.clicked {
+                                                            color: $secondary-color;
+                                                        }
+                                                        &:hover {
+                                                            color: $secondary-color;
+                                                        }
+                                                        &.lni-heart-filled {
+                                                            color: $secondary-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            p {
+                                                font-size: 1.5rem;
+                                            }
                                         }
                                         &:hover {
-                                            background: rgba(0, 0, 0, 0.76);
+                                            background: $primary-color;
+                                            border-radius: 2rem;
+                                            .rolex-txt {
+                                                p {
+                                                    color: #000;
+                                                }
+                                            }
+                                            .rolex-img {
+                                                img {
+                                                    border-radius: 50%;
+                                                }
+                                            }
+                                            .add-to-cart {
+                                                visibility: visible;
+                                                transform: translate3d(0, 0, 0);
+                                                a {
+                                                    &.btn {
+                                                        i {
+                                                            color: $primary-color;
+                                                        }
+                                                        &:hover {
+                                                            i {
+                                                                color: #000;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &.pastry-menu {
+                            .pastry-menu-wrapper {
+                                position: relative;
+                                .gr {
+                                    padding: 3rem 0;
+                                    .pastry {
+                                        position: relative;
+                                        padding: 1rem 0;
+                                        @include easeOut;
+                                        .pastry-img {
+                                            img {
+                                                width: 80%;
+                                                height: 80%;
+                                            }
+                                        }
+                                        .pastry-txt {
+                                            padding: 2rem 1rem;
+                                            h4 {
+                                                font-size: 1.5rem;
+                                                margin: 0.5rem 0;
+                                                color: $secondary-color;
+                                            }
+                                        }
+                                        .add-to-cart {
+                                            position: absolute;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: space-between;
+                                            padding: 3rem 1rem;
+                                            top: 10rem;
+                                            right: 0;
+                                            left: 0;
+                                            height: auto;
+                                            transform: translate3d(0, 150%, 0);
+                                            background-color: rgba(0, 0, 0, 0.514);
+                                            visibility: hidden;
+                                            @include easeOut;
+                                            a {
+                                                &.btn {
+                                                    margin: 0.5rem 0;
+                                                    text-transform: uppercase;
+                                                    i {
+                                                        color: $primary-color;
+                                                    }
+                                                }
+                                                &.favorite {
+                                                    i {
+                                                        color: $primary-color;
+                                                        font-size: 2rem;
+                                                        cursor: pointer;
+                                                        @include easeOut;
+                                                        &.clicked {
+                                                            color: $secondary-color;
+                                                        }
+                                                        &:hover {
+                                                            color: $secondary-color;
+                                                        }
+                                                        &.lni-heart-filled {
+                                                            color: $secondary-color;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            p {
+                                                font-size: 1.5rem;
+                                            }
+                                        }
+                                        &:hover {
+                                            background: $primary-color;
+                                            border-radius: 2rem;
+                                            .pastry-txt {
+                                                p {
+                                                    color: #000;
+                                                }
+                                            }
+                                            .pastry-img {
+                                                img {
+                                                    border-radius: 50%;
+                                                }
+                                            }
+                                            .add-to-cart {
+                                                visibility: visible;
+                                                transform: translate3d(0, 0, 0);
+                                                a {
+                                                    &.btn {
+                                                        i {
+                                                            color: $primary-color;
+                                                        }
+                                                        &:hover {
+                                                            i {
+                                                                color: #000;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -1834,4 +1881,5 @@ footer#footer {
     }
 }
 
+@import 'mobile';
 @import 'mobile';

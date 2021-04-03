@@ -94,7 +94,8 @@ nav {
     .nav-link {
         display: inline-block;
         position: relative;
-        font-size: 30px;
+        font-size: 1.5rem;
+        text-align: left;
         text-transform: uppercase;
         padding: 1rem 0 !important;
         font-weight: 300;
@@ -103,6 +104,10 @@ nav {
         @include easeOut;
         &:hover {
             color: $secondary-color;
+        }
+        &.btn {
+            padding: 0.5rem 1rem !important;
+            font-size: 1rem !important;
         }
     }
 }

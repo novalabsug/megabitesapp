@@ -7,6 +7,10 @@ const Cart = require('../models/Cart');
 const { Mongoose } = require('mongoose');
 const Contact = require('../models/Contact');
 const Comment = require('../models/Comments');
+const Likes = require('../models/Likes');
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
 
 const maxAge = 2 * 24 * 60 * 60;
 
@@ -79,6 +83,13 @@ const handleErrors = (err) => {
         });
     }
 
+    // validating likes errors
+    if (err.message.includes('likes validation failed')) {
+        Object.values(err.errors).forEach(({ properties }) => {
+            errors[properties.path] = properties.message;
+        });
+    }
+
     return errors;
 }
 
@@ -99,6 +110,10 @@ module.exports.menus_post = async(req, res) => {
     const { menuName, menuPrice, menuDescription, menuType } = req.body;
     try {
         if (menuName) {
+            // let img = {
+            //     data: fs.readFileSync(req.files.userPhoto.path),
+            //     type: 'image/jpg'
+            // }
             const menuPost = await Menus.create({ menuId: uuid.v4(), menuName, menuPrice, menuDescription, menuType });
             res.status(200).json({ menuPost });
         } else {
@@ -147,6 +162,20 @@ module.exports.cart_post = async(req, res) => {
             res.status(200).json({ cartPost });
         }
 
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+}
+
+module.exports.cart_delete_post = async(req, res) => {
+    const { menuItem } = req.body;
+    console.log(menuItem);
+    try {
+        let cart = await Cart.deleteMany({ _id: menuItem });
+        console.log(cart);
+        const response = 'Operation successful';
+        res.status(200).json({ response });
     } catch (err) {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
@@ -253,6 +282,31 @@ module.exports.reservation_post = async(req, res) => {
 module.exports.logout_get = async(req, res) => {
     res.cookie('restaurantJwt', '', { maxAge: 1 });
     res.redirect('/');
+}
+
+module.exports.likes_post = async(req, res) => {
+    const { action, email, userEmail, itemId } = req.body;
+    try {
+        if (email) {
+            let likesGet = await Likes.fetchLikes(email);
+            console.log(likesGet);
+            res.status(200).json({ likesGet });
+        } else if (action == 'delete') {
+            await Likes.deleteMany({ itemId }),
+                (err) => {
+                    console.log(err);
+                }
+            const response = 'Operation Successful';
+            res.status(200).json({ response });
+        } else {
+            let likesPost = await Likes.create({ userEmail, itemId });
+            res.status(200).json({ likesPost });
+        }
+
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
 }
 
 module.exports.admin_panel = async(req, res) => {

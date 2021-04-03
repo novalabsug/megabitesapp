@@ -71,6 +71,7 @@ const orderingSystem = () => {
             const cartFullMenu = document.querySelector('.cart-full form .cart-full-menu');
             const cartFull = document.querySelector('.cart-content .cart-full');
             const cartEmpty = document.querySelector('.cart-content .cart-empty');
+            const cartMobileMenu = document.querySelector('.mobile-cart .cart-full-menu');
 
             if (Cart.length > 0) {
                 cartFull.classList.add('show');
@@ -139,6 +140,84 @@ const orderingSystem = () => {
 
                 totalEl.innerHTML = `<h3>Total</h3><h4>UGX ${total}</h4>`;
             }
+
+            // add items to the mobile menu
+            for (let y = 0; y < Cart.length; y++) {
+                let div = document.createElement('div');
+                div.className = "cart-menu-item";
+                div.innerHTML = `
+                    <div class="cart-img">
+                        <img src="/images/menus/burgers/1.jpg">
+                    </div>
+                    <div class="cart-txt">
+                        <h4>${Cart[y].menu.menuName}</h4>
+                        <p>${Cart[y].menu.menuDescription}</p>
+                        
+                    </div>
+                    <div class="remove-from-cart">
+                        <input type="number" id="quantity" name="order-quantity" value="1">
+                        <a class="price" hidden>${Cart[y].menu.menuPrice}</a>
+                        <a class="subprice" data-target="${Cart[y].menu.menuPrice}">UGX ${Cart[y].menu.menuPrice}</a>
+                        <a class="delete" data-target='${Cart[y]._id}'><i class="lni lni-trash"></i></a>
+                    </div>`;
+
+                cartMobileMenu.appendChild(div);
+            }
+
+            const quantityMobileOrder = document.querySelectorAll('form.mobile-cart .cart-full-menu .cart-menu-item .remove-from-cart input');
+
+            quantityMobileOrder.forEach(quantity => {
+                calcMobileTotal();
+                quantity.addEventListener('click', () => {
+                    const Parent = quantity.parentElement;
+                    const unitPrice = Parent.querySelector('a.price').innerText;
+                    const subtotal = Parent.querySelector('a.subprice');
+                    subtotal.innerText = `UGX ${unitPrice * quantity.value}`;
+                    subtotal.setAttribute('data-target', `${unitPrice * quantity.value}`);
+                    calcMobileTotal();
+                });
+            });
+
+            function calcMobileTotal() {
+                const totalEl = document.querySelector('form.mobile-cart .cart-mobile-footer .cart-mobile-total');
+                let total = 0;
+                const pricesEl = document.querySelectorAll('form.mobile-cart .cart-full-menu .cart-menu-item .remove-from-cart a.subprice');
+
+                for (let i = 0; i < pricesEl.length; i++) {
+                    total += parseInt(pricesEl[i].getAttribute('data-target'))
+                }
+
+                totalEl.innerHTML = `<h3>Total: </h3><h4>UGX ${total}</h4>`;
+            }
+
+            // Delete menu item and reload window
+            const cartDeleteBtns = document.querySelectorAll('.cart-menu-item .remove-from-cart a.delete');
+
+            cartDeleteBtns.forEach(btn => {
+
+                btn.addEventListener('click', async() => {
+                    const menuItem = btn.getAttribute('data-target');
+                    try {
+                        const res = await fetch('/cartDelete', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                menuItem
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+
+                        const data = await res.json();
+                        if (data.response) {
+                            location.reload();
+                        }
+                    } catch (error) {
+                        console.log(error);
+                    }
+
+                });
+            })
 
         } else {
             console.log(window.location.href);

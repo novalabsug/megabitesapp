@@ -56,7 +56,7 @@ const displayMenuTabs = () => {
                     menu = 'pizza-menu';
                     break;
                 case 'pastries-item-btn':
-                    menu = 'pastries-menu';
+                    menu = 'pastry-menu';
                     break;
                 case 'drinks-item-btn':
                     menu = 'drinks-menu';
@@ -78,7 +78,7 @@ const showNotificationMenu = (msg) => {
     const notificationMenu = document.querySelector('.notifications');
 
     const p = document.createElement('p');
-    p.innerText = msg + ' ' + 'has been added';
+    p.innerText = msg;
 
     notificationMenu.appendChild(p);
     notificationPopupMenu.classList.add('show');
@@ -170,24 +170,24 @@ const showMenus = async() => {
             let clickedMenuId = "";
 
             // displaying notification
-            const showNotificationMenu = (msg) => {
-                const notificationPopupMenu = document.querySelector('#notification');
-                const notificationMenu = document.querySelector('.notifications');
+            // const showNotificationMenu = (msg) => {
+            //     const notificationPopupMenu = document.querySelector('#notification');
+            //     const notificationMenu = document.querySelector('.notifications');
 
-                const p = document.createElement('p');
+            //     const p = document.createElement('p');
 
-                // check if the there is an element already in the notifications menu
-                p.innerText = msg + ' ' + 'has been added';
+            //     // check if the there is an element already in the notifications menu
+            //     p.innerText = msg;
 
-                console.log(notificationMenu.innerHTML);
+            //     console.log(notificationMenu.innerHTML);
 
-                notificationMenu.appendChild(p);
-                notificationPopupMenu.classList.add('show');
-                setTimeout(() => {
-                    notificationMenu.removeChild(p);
-                    notificationPopupMenu.classList.remove('show');
-                }, 3000);
-            }
+            //     notificationMenu.appendChild(p);
+            //     notificationPopupMenu.classList.add('show');
+            //     setTimeout(() => {
+            //         notificationMenu.removeChild(p);
+            //         notificationPopupMenu.classList.remove('show');
+            //     }, 3000);
+            // }
 
             // get the index of the clicked menu
             const findId = (array, id) => {
@@ -204,7 +204,8 @@ const showMenus = async() => {
             const cart = async(array, id) => {
 
                 // call the show notification menu function and pass the name of the clicked food item as a parameter
-                showNotificationMenu(array[id].menuName);
+                const msg = array[id].menuName + ' ' + 'has been added to cart';
+                showNotificationMenu(msg);
 
                 // send the id of the menu and email of the user to the database
                 try {
@@ -252,52 +253,204 @@ const showMenus = async() => {
         // Menu array to hold menus
         const Menus = await getMenus();
 
-        const burgerMenuEl = document.querySelector('.burgers .gr');
-        const pizzaMenuEl = document.querySelector('.pizzas .gr');
+        const burgerMenuEl = document.querySelector('.burgers-menu-wrapper .gr');
+        const pizzaMenuEl = document.querySelector('.pizzas-menu-wrapper .gr');
+        const rolexMenuEl = document.querySelector('.rolex-menu-wrapper .gr');
+        const pastryMenuEl = document.querySelector('.pastry-menu-wrapper .gr');
+
+        let burgerImageIndex = 1;
+        let pizzaImageIndex = 1;
+        let pastryImageIndex = 1;
+        let rolexImageIndex = 1;
+        let drinksImageIndex = 1;
 
         for (let i = 0; i < Menus.length; i++) {
-            if (Menus[i].menuType == "burger") {
-                let div = document.createElement('div');
-                div.className = "burger";
-                div.innerHTML = `
-            <div class="burger-img">
-                <img src="/images/menus/burgers/2.jpg">
-            </div>
-            <div class="burger-txt">
-                <h4>${Menus[i].menuName}</h4>
-                <p>${Menus[i].menuDescription}</p>
-            </div>
-            <div class="add-to-cart">
-                <a class="favorite"><i class="lni lni-heart-filled"></i></a>
-                <a class="btn add-to-cart-btn" data-target="${Menus[i].menuId}"><i class="lni lni-cart"></i> add to cart</a>
-            </div>`;
+            switch (Menus[i].menuType) {
+                case 'burger':
+                    let divBurger = document.createElement('div');
+                    divBurger.className = "burger";
+                    divBurger.innerHTML = `
+                        <div class="burger-img">
+                            <img src="/images/menus/burgers/${burgerImageIndex++}.jpg">
+                        </div>
+                        <div class="burger-txt">
+                            <h4>${Menus[i].menuName}</h4>
+                            <p>${Menus[i].menuDescription}</p>
+                            
+                        </div>
+                        <div class="add-to-cart">
+                            <a class="favorite"><i class="lni lni-heart"></i></a>
+                            <a class="btn add-to-cart-btn" data-target="${Menus[i].menuId}"><i class="lni lni-cart"></i> add to cart</a>
+                            <p>UGX ${Menus[i].menuPrice}</p>
+                        </div>`;
 
-                burgerMenuEl.appendChild(div);
-            } else if (Menus[i].menuType == "pizza") {
-                let div = document.createElement('div');
-                div.className = "pizza";
-                div.innerHTML = `
-            <div class="pizza-img">
-                <img src="/images/menus/pizza/2.jpg">
-            </div>
-            <div class="pizza-txt">
-                <h4>${Menus[i].menuName}</h4>
-                <p>${Menus[i].menuDescription}</p>
-            </div>
-            <div class="add-to-cart">
-                <a class="favorite"><i class="lni lni-heart-filled"></i></a>
-                <a class="btn add-to-cart-btn" data-target="${Menus[i].menuId}"><i class="lni lni-cart"></i> add to cart</a>
-            </div>`;
+                    burgerMenuEl.appendChild(divBurger);
+                    break;
+                case 'pizza':
+                    let divPizza = document.createElement('div');
+                    divPizza.className = "pizza";
+                    divPizza.innerHTML = `
+                        <div class="pizza-img">
+                            <img src="/images/menus/pizza/${pizzaImageIndex++}.jpg">
+                        </div>
+                        <div class="pizza-txt">
+                            <h4>${Menus[i].menuName}</h4>
+                            <p>${Menus[i].menuDescription}</p>
+                            
+                        </div>
+                        <div class="add-to-cart">
+                            <a class="favorite"><i class="lni lni-heart"></i></a>
+                            <a class="btn add-to-cart-btn" data-target="${Menus[i].menuId}"><i class="lni lni-cart"></i> add to cart</a>
+                            <p>UGX ${Menus[i].menuPrice}</p>
+                        </div>`;
 
-                pizzaMenuEl.appendChild(div);
+                    pizzaMenuEl.appendChild(divPizza);
+                    break;
+                case 'rolex':
+                    let divRolex = document.createElement('div');
+                    divRolex.className = "rolex";
+                    divRolex.innerHTML = `
+                    <div class="rolex-img">
+                        <img src="/images/menus/rolex/${rolexImageIndex++}.jpg">
+                    </div>
+                    <div class="rolex-txt">
+                        <h4>${Menus[i].menuName}</h4>
+                        <p>${Menus[i].menuDescription}</p>
+                        
+                    </div>
+                    <div class="add-to-cart">
+                        <a class="favorite"><i class="lni lni-heart"></i></a>
+                        <a class="btn add-to-cart-btn" data-target="${Menus[i].menuId}"><i class="lni lni-cart"></i> add to cart</a>
+                        <p>UGX ${Menus[i].menuPrice}</p>
+                    </div>`;
+                    rolexMenuEl.appendChild(divRolex);
+                    break;
+                case 'pastry':
+                    let divPastry = document.createElement('div');
+                    divPastry.className = "pastry";
+                    divPastry.innerHTML = `
+                        <div class="pastry-img">
+                            <img src="/images/menus/pastry/${pastryImageIndex++}.jpg">
+                        </div>
+                        <div class="pastry-txt">
+                            <h4>${Menus[i].menuName}</h4>
+                            <p>${Menus[i].menuDescription}</p>
+                           
+                        </div>
+                        <div class="add-to-cart">
+                            <a class="favorite"><i class="lni lni-heart"></i></a>
+                            <a class="btn add-to-cart-btn" data-target="${Menus[i].menuId}"><i class="lni lni-cart"></i> add to cart</a>
+                            <p>UGX ${Menus[i].menuPrice}</p>
+                        </div>`;
+                    pastryMenuEl.appendChild(divPastry);
+                    break;
+                default:
+                    break;
             }
-
         }
     } catch (error) {
         console.log(error);
     }
 
+    const addLikes = async() => {
+
+        const likesBtn = document.querySelectorAll('.add-to-cart a.favorite');
+        const emailEl = document.querySelector('.user-profile .user-profile-menu .wr .email');
+        const likedMenu = document.querySelectorAll('.add-to-cart .add-to-cart-btn');
+        const email = emailEl.innerHTML.trim();
+
+        // fetching likes from database and updating them
+        try {
+            const res = await fetch('/likes', {
+                method: 'POST',
+                body: JSON.stringify({
+                    email
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const data = await res.json();
+            const menuArray = data.likesGet;
+            console.log(data);
+
+            for (let i = 0; i < likedMenu.length; i++) {
+                for (let y = 0; y < menuArray.length; y++) {
+                    if (menuArray[y].itemId == likedMenu[i].getAttribute('data-target')) {
+                        console.log(likedMenu[i]);
+                        likedMenu[i].parentElement.querySelector('a.favorite').querySelector('i').className = ("lni lni-heart-filled");
+                    }
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        if (likesBtn) {
+            likesBtn.forEach(btn => {
+                btn.addEventListener('click', async() => {
+
+                    if (btn.querySelector('i').className == "lni lni-heart") {
+                        const itemId = btn.parentElement.querySelector('.btn').getAttribute('data-target');
+
+                        try {
+                            const res = await fetch('/likes', {
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    userEmail: email,
+                                    itemId
+                                }),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+
+                            const data = await res.json();
+
+                            if (data.likesPost) {
+                                btn.querySelector('i').className = "lni lni-heart-filled";
+                                const msg = data.likesPost.itemId + ' ' + 'has been added to favorites';
+                                showNotificationMenu(msg);
+
+                            }
+                        } catch (err) {
+                            console.log(err);
+                        }
+                    } else {
+                        const itemId = btn.parentElement.querySelector('.btn').getAttribute('data-target');
+                        const action = 'delete';
+                        try {
+                            const res = await fetch('/likes', {
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    action,
+                                    itemId
+                                }),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+
+                            const data = await res.json();
+                            console.log(data.response);
+
+                            if (data.response) {
+                                btn.querySelector('i').className = "lni lni-heart";
+                                showNotificationMenu(data.response);
+                            }
+                        } catch (err) {
+                            console.log(err);
+                        }
+                    }
+
+                });
+            });
+        }
+    }
+
     getMenuItemsDetails();
+    addLikes();
 
 }
 
@@ -307,4 +460,5 @@ let sliderBtn = document.querySelectorAll('form #slider-menu #slider-btn');
 
 showMenus();
 slider(sliders, sliderBtn);
+displayMenuTabs();
 displayMenuTabs();

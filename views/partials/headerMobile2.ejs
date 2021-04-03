@@ -1,0 +1,44 @@
+<% if (user) { %>
+    <div class="ext-menu">
+        <div class="menu-delivery">
+            <img src="/images/menus/icons/049-delivery truck.png" alt="" srcset="">
+            <div class="menu-delivery-txt">
+                <h3>For delivery</h3>
+                <h5>Call: +256 776 900 332</h5>
+            </div>
+        </div>
+        <ul class="menu-icons mobile hide-on-large">
+            <li class="profile mobile">
+                <a class="nav-link user-profile-btn"><i class="lni lni-user"></i></a>
+            </li>
+            <li class="favorites">
+                <a href="#" class="nav-link">
+                    <p class="likes-size"></p><i class="lni lni-heart"></i></a>
+            </li>
+            <li class="icon-cart hide-on-large">
+                <a href="cart" class="nav-link hide-on-large">
+                    <p class="cart-size"></p><i class="lni lni-cart"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="user-profile mobile hide-on-large">
+        <div class="user-profile-hdr">
+            <i class="lni lni-close" id="close-user-profile"></i>
+        </div>
+        <div class="user-profile-menu">
+            <a id="username"></a>
+            <div class="wr">
+                <p class="username" hidden>
+                    <%= user.name %>
+                </p>
+                <p class="email">
+                    <%= user.email %>
+                </p>
+                <a href="/" class="btn">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <% } %>

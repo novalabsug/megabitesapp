@@ -23,6 +23,14 @@ cartSchema.statics.getCartItems = async function(email) {
     return user;
 }
 
+// cartSchema.statics.deleteCartItem = async function(id) {
+//     const user = await this.find({ _id: id });
+//     if (user) {
+//         remo
+//     }
+//     return user;
+// }
+
 const Cart = mongoose.model('cart', cartSchema);
 
 module.exports = Cart;

@@ -174,6 +174,41 @@ const postComments = () => {
     })
 }
 
+const showWishlist = async() => {
+    const emailEl = document.querySelector('.user-profile .user-profile-menu .wr .email');
+    const email = emailEl.innerHTML.trim();
+    const likesEl = document.querySelectorAll('.menu-icons .favorites a .likes-size');
+    console.log(likesEl);
+
+    if (emailEl) {
+        try {
+            const res = await fetch('/likes', {
+                method: 'POST',
+                body: JSON.stringify({
+                    email
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const data = await res.json();
+            const menuArray = data.likesGet;
+            console.log(data);
+
+            likesEl.forEach(likes => {
+                console.log(likes);
+                likes.innerHTML = menuArray.length;
+                likes.classList.add('show');
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+}
+
+showWishlist();
 displayComments();
 postComments();
 
